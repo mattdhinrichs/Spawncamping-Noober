@@ -25,10 +25,18 @@ app.get('/scrape', function(req, res){
 
             var title, link;
             var json = { title : "", link : ""};
+            $('.cn--idx-1 .cd__headline-text').filter(function(){
+              var data = $(this);
+              title = data.text();
+              console.log(title);
+            });
         }
-    })
-})
+        fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
+          console.log('File successfully written!');
+        });
+    });
+});
 
-app.listen('8081')
+app.listen('8081');
 console.log('Magic happens on port 8081');
 exports = module.exports = app;
